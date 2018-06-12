@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">f1_app</string>
+    <string name="choose_season">Choose a season</string>
+    <string name="choose">Choose</string>
+    <string name="title_activity_home">f1_app</string>
+    <string name="nav_seasons">Seasons</string>
+    <string name="nav_drivers">Drivers</string>
+    <string name="nav_constructors">Constructors</string>
+    <string name="nav_circuits">Circuits</string>
+    <string name="title_activity_season_details">Season Details</string>
+    <string name="title_home">Home</string>
+    <string name="races">Races</string>
+    <string name="driver_standings">Standings</string>
 </resources>

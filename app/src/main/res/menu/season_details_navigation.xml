@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_races"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/races" />
+
+    <item
+        android:id="@+id/nav_driver_standings"
+        android:icon="@drawable/helmet_1"
+        android:title="@string/nav_drivers" />
+
+</menu>

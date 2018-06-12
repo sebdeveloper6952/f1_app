@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_seasons"
+        android:icon="@drawable/finish_flags"
+        android:title="@string/nav_seasons" />
+
+    <item
+        android:id="@+id/nav_drivers"
+        android:icon="@drawable/helmet_1"
+        android:title="@string/nav_drivers" />
+
+    <item
+        android:id="@+id/nav_constructors"
+        android:icon="@drawable/f1_car"
+        android:title="@string/nav_constructors" />
+
+    <item
+        android:id="@+id/nav_circuits"
+        android:icon="@drawable/circuit0"
+        android:title="@string/nav_circuits"/>
+
+</menu>
