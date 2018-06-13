@@ -19,6 +19,7 @@ class AllSeasonFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        super.onAttach(context)
         if (context is OnListFragmentInteractionListener) {
             listener = context
         } else {

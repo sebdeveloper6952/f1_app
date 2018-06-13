@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-
 import com.projects.sebdeveloper6952.f1_app.AllSeasonFragment.OnListFragmentInteractionListener
-
 import kotlinx.android.synthetic.main.item_season.view.*
 
 class SeasonRecyclerViewAdapter(private val data: List<Season>,
-                                private val listener: OnListFragmentInteractionListener?
-): RecyclerView.Adapter<SeasonRecyclerViewAdapter.ViewHolder>() {
+                                private val listener: OnListFragmentInteractionListener?):
+        RecyclerView.Adapter<SeasonRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
 
@@ -33,8 +30,8 @@ class SeasonRecyclerViewAdapter(private val data: List<Season>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.txtViewYear.text = item.year.toString()
-        with(holder.mView) {
+        holder.txtViewYear.text = item.season
+        with(holder.v) {
             tag = item
             setOnClickListener(mOnClickListener)
         }
@@ -42,9 +39,9 @@ class SeasonRecyclerViewAdapter(private val data: List<Season>,
 
     override fun getItemCount(): Int = data.size
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
 
-        val txtViewYear: TextView = mView.txtView_seasonYear
+        val txtViewYear: TextView = v.txtView_seasonYear
 
         override fun toString(): String {
             return super.toString() + " '" + txtViewYear.text + "'"

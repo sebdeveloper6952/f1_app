@@ -3,12 +3,18 @@ package com.projects.sebdeveloper6952.f1_app
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import junit.framework.Test
 import kotlinx.android.synthetic.main.activity_season_details.*
-import java.io.Serializable
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class SeasonDetailsActivity : AppCompatActivity() {
+class SeasonDetailsActivity : AppCompatActivity(), F1DataManager.SeasonListener {
 
-    private var season: Season? = null
+    // season associated with this activity
+    private lateinit var season: Season
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -29,11 +35,26 @@ class SeasonDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_details)
 
-        // TODO: testing
-        season = intent.getSerializableExtra("season") as Season?
-        txtView_seasonTitle.text = season?.year.toString()
+        season = intent.getSerializableExtra("season") as Season
+        txtView_seasonTitle.text = season.season
 
+        // item click listener for bottom navigation
         season_details_navigation
                 .setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        // fetch desired season from data manager
+        F1DataManager.getSeason(this, season.season)
     }
+
+    override fun onSeasonUpdated(season: Season) {
+        with(recyclerView) {
+            adapter = RaceRecyclerViewAdapter(season.races)
+            layoutManager = LinearLayoutManager(this@SeasonDetailsActivity)
+        }
+    }
+
+    override fun onError(message: String) {
+        toast(message)
+    }
+
 }
