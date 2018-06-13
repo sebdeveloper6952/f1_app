@@ -1,5 +1,6 @@
 package com.projects.sebdeveloper6952.f1_app.dummy
 
+import com.projects.sebdeveloper6952.f1_app.Race
 import com.projects.sebdeveloper6952.f1_app.Season
 import java.util.ArrayList
 import java.util.HashMap
@@ -13,7 +14,7 @@ object DummyContent {
     init {
         // Add some sample items.
         for (i in 1950..currentYear) {
-            addSeason(createDummySeason(i))
+            addSeason(createDummySeason(i.toString()))
         }
     }
 
@@ -21,7 +22,7 @@ object DummyContent {
         SEASONS.add(season)
     }
 
-    private fun createDummySeason(year: Int): Season {
-        return Season(year)
+    private fun createDummySeason(year: String): Season {
+        return Season(year, arrayListOf())
     }
 }
