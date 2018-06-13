@@ -34,9 +34,9 @@ class AllSeasonFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val layout = inflater.inflate(R.layout.fragment_all_seasons_list, container, false)
-        with(layout) {
-            recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = SeasonRecyclerViewAdapter(DummyContent.SEASONS, listener)
+        with(layout.recyclerView) {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = SeasonRecyclerViewAdapter(DummyContent.SEASONS, listener)
         }
         return layout
     }

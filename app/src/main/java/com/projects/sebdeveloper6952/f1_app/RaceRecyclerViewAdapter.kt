@@ -4,11 +4,21 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import kotlinx.android.synthetic.main.item_race.view.*
 
-class RaceRecyclerViewAdapter(private val data: List<Race>):
+class RaceRecyclerViewAdapter(private val data: List<Race>,
+                              private val listener: RaceListFragment.OnFragmentInteractionListener?):
         RecyclerView.Adapter<RaceRecyclerViewAdapter.ViewHolder>() {
+
+    private val onClickListener: View.OnClickListener
+
+    init {
+        // the clicked view has a Race object as its tag
+        onClickListener = View.OnClickListener { v ->
+            val race = v.tag as Race
+            listener?.onFragmentInteraction(race)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layout = LayoutInflater.from(parent.context)
@@ -23,6 +33,7 @@ class RaceRecyclerViewAdapter(private val data: List<Race>):
         holder.txtViewName.text = race.name
         with(holder.v) {
             tag = race
+            setOnClickListener(onClickListener)
         }
     }
 

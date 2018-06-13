@@ -3,15 +3,12 @@ package com.projects.sebdeveloper6952.f1_app
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import junit.framework.Test
 import kotlinx.android.synthetic.main.activity_season_details.*
 import org.jetbrains.anko.toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class SeasonDetailsActivity : AppCompatActivity(), F1DataManager.SeasonListener {
+class SeasonDetailsActivity : AppCompatActivity(),
+        F1DataManager.SeasonListener,
+        RaceListFragment.OnFragmentInteractionListener {
 
     // season associated with this activity
     private lateinit var season: Season
@@ -47,14 +44,17 @@ class SeasonDetailsActivity : AppCompatActivity(), F1DataManager.SeasonListener 
     }
 
     override fun onSeasonUpdated(season: Season) {
-        with(recyclerView) {
-            adapter = RaceRecyclerViewAdapter(season.races)
-            layoutManager = LinearLayoutManager(this@SeasonDetailsActivity)
-        }
+        // attach race list fragment
+        supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_space, RaceListFragment.newInstance(season), "raceList")
+                .commit()
     }
 
     override fun onError(message: String) {
         toast(message)
     }
 
+    override fun onFragmentInteraction(race: Race) {
+        toast("Clicked: ${race.name}")
+    }
 }

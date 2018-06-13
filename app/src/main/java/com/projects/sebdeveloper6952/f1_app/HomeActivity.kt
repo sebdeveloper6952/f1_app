@@ -1,16 +1,15 @@
 package com.projects.sebdeveloper6952.f1_app
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class HomeActivity : AppCompatActivity(), AllSeasonFragment.OnListFragmentInteractionListener {
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val mOnNavigationItemSelectedListener =
+            BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.nav_seasons -> {
                 return@OnNavigationItemSelectedListener true
