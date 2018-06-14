@@ -3,6 +3,8 @@ package com.projects.sebdeveloper6952.f1_app
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import com.projects.sebdeveloper6952.f1_app.models.Race
+import com.projects.sebdeveloper6952.f1_app.models.Season
 import kotlinx.android.synthetic.main.activity_season_details.*
 import org.jetbrains.anko.toast
 

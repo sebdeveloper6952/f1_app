@@ -1,5 +1,6 @@
 package com.projects.sebdeveloper6952.f1_app
 
+import com.projects.sebdeveloper6952.f1_app.interfaces.F1ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

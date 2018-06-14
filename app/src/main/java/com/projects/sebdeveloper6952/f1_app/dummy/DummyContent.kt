@@ -1,9 +1,7 @@
 package com.projects.sebdeveloper6952.f1_app.dummy
 
-import com.projects.sebdeveloper6952.f1_app.Race
-import com.projects.sebdeveloper6952.f1_app.Season
+import com.projects.sebdeveloper6952.f1_app.models.Season
 import java.util.ArrayList
-import java.util.HashMap
 
 object DummyContent {
 

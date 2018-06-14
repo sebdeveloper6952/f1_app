@@ -3,14 +3,13 @@ package com.projects.sebdeveloper6952.f1_app
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import com.projects.sebdeveloper6952.f1_app.adapters.SeasonRecyclerViewAdapter
 import com.projects.sebdeveloper6952.f1_app.dummy.DummyContent
+import com.projects.sebdeveloper6952.f1_app.models.Season
 import kotlinx.android.synthetic.main.fragment_all_seasons_list.view.*
 
 class AllSeasonFragment : Fragment() {

@@ -1,5 +1,7 @@
 package com.projects.sebdeveloper6952.f1_app
 
+import com.projects.sebdeveloper6952.f1_app.models.Season
+import com.projects.sebdeveloper6952.f1_app.models.SeasonResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
