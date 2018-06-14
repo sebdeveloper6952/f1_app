@@ -4,28 +4,28 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: implement Room local database
-class F1DataManager {
+/* TODO implement local database
+ */
+object F1DataManager {
 
-    companion object {
+    private val f1Api = F1ApiSingleton.newInstance()
 
-        private val service = F1ApiService.newInstance()
-
-        fun getSeason(listener: SeasonListener, seasonYear: String) {
-            val call = service.getSeason(seasonYear)
-            call.enqueue(object: Callback<Season> {
-                override fun onResponse(call: Call<Season>?, response: Response<Season>?) {
-                    listener.onSeasonUpdated(response?.body()!!)
-                }
-                override fun onFailure(call: Call<Season>?, t: Throwable?) {
-                    listener.onError("Error fetching season.")
-                }
-            })
-        }
+    fun getSeason(listener: SeasonListener, seasonYear: String) {
+        val call = f1Api.getSeason(seasonYear)
+        call.enqueue(object: Callback<SeasonResponse> {
+            override fun onResponse(call: Call<SeasonResponse>?,
+                                    response: Response<SeasonResponse>?) {
+                val season = response?.body()?.MRData?.RaceTable!!
+                listener.onSeasonUpdated(season)
+            }
+            override fun onFailure(call: Call<SeasonResponse>?, t: Throwable?) {
+                listener.onError("Error fetching season.")
+            }
+        })
     }
 
     interface SeasonListener {
-        fun onSeasonUpdated(season: Season)
         fun onError(message: String)
+        fun onSeasonUpdated(season: Season)
     }
 }
