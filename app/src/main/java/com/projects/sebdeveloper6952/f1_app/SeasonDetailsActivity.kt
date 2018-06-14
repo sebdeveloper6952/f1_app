@@ -48,6 +48,7 @@ class SeasonDetailsActivity : AppCompatActivity(),
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_space, RaceListFragment.newInstance(season), "raceList")
                 .commit()
+        toast("onResponse")
     }
 
     override fun onError(message: String) {
@@ -55,6 +56,6 @@ class SeasonDetailsActivity : AppCompatActivity(),
     }
 
     override fun onFragmentInteraction(race: Race) {
-        toast("Clicked: ${race.name}")
+        toast("Clicked: ${race.raceName}")
     }
 }

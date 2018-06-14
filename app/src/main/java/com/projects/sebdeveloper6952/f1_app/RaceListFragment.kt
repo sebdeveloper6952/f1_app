@@ -36,7 +36,7 @@ class RaceListFragment : Fragment() {
         val layout = inflater.inflate(R.layout.fragment_race_list, container, false)
         with(layout.recyclerView) {
             layoutManager = LinearLayoutManager(activity)
-            adapter = RaceRecyclerViewAdapter(season.races, listener)
+            adapter = RaceRecyclerViewAdapter(season.Races, listener)
         }
         return layout
     }

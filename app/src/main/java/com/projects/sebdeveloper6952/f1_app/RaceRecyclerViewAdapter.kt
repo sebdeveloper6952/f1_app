@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_race.view.*
 
-class RaceRecyclerViewAdapter(private val data: List<Race>,
+class RaceRecyclerViewAdapter(private val data: List<Race>?,
                               private val listener: RaceListFragment.OnFragmentInteractionListener?):
         RecyclerView.Adapter<RaceRecyclerViewAdapter.ViewHolder>() {
 
@@ -26,11 +26,11 @@ class RaceRecyclerViewAdapter(private val data: List<Race>,
         return ViewHolder(layout)
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = data?.size ?: 0
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val race = data[position]
-        holder.txtViewName.text = race.name
+        val race = data?.get(position)
+        holder.txtViewName.text = race?.raceName
         with(holder.v) {
             tag = race
             setOnClickListener(onClickListener)
