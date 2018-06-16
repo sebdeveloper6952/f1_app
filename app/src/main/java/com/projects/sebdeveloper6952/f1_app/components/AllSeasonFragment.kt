@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_all_seasons_list.view.*
 class AllSeasonFragment : Fragment() {
 
     private var listener: OnListFragmentInteractionListener? = null
-    private val columnCount = 2
+    private val columnCount = 1
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
