@@ -1,4 +1,4 @@
-package com.projects.sebdeveloper6952.f1_app
+package com.projects.sebdeveloper6952.f1_app.components
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.projects.sebdeveloper6952.f1_app.R
 import com.projects.sebdeveloper6952.f1_app.adapters.RaceRecyclerViewAdapter
 import com.projects.sebdeveloper6952.f1_app.models.Race
 import com.projects.sebdeveloper6952.f1_app.models.Season
