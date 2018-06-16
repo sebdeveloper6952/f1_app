@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/nav_races"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/finish_flags"
         android:title="@string/races" />
 
     <item

@@ -1,9 +1,12 @@
-package com.projects.sebdeveloper6952.f1_app
+package com.projects.sebdeveloper6952.f1_app.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.projects.sebdeveloper6952.f1_app.R
+import com.projects.sebdeveloper6952.f1_app.models.Race
+import com.projects.sebdeveloper6952.f1_app.components.RaceListFragment
 import kotlinx.android.synthetic.main.item_race.view.*
 
 class RaceRecyclerViewAdapter(private val data: List<Race>?,

@@ -1,11 +1,13 @@
-package com.projects.sebdeveloper6952.f1_app
+package com.projects.sebdeveloper6952.f1_app.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.projects.sebdeveloper6952.f1_app.AllSeasonFragment.OnListFragmentInteractionListener
+import com.projects.sebdeveloper6952.f1_app.components.AllSeasonFragment.OnListFragmentInteractionListener
+import com.projects.sebdeveloper6952.f1_app.R
+import com.projects.sebdeveloper6952.f1_app.models.Season
 import kotlinx.android.synthetic.main.item_season.view.*
 
 class SeasonRecyclerViewAdapter(private val data: List<Season>,
