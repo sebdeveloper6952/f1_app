@@ -1,7 +1,6 @@
 package com.projects.sebdeveloper6952.f1_app.components
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.projects.sebdeveloper6952.f1_app.R
 import com.projects.sebdeveloper6952.f1_app.models.Season
@@ -13,6 +12,7 @@ class HomeActivity : AppCompatActivity(), AllSeasonFragment.OnListFragmentIntera
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        supportActionBar?.title = getString(R.string.all_seasons)
 
         // add all seasons fragment
         supportFragmentManager

@@ -8,20 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".components.SeasonDetailsActivity">
 
-    <TextView
-        android:id="@+id/txtView_seasonTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/races"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_space"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/fragment_space"
         android:layout_width="match_parent"
@@ -33,9 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_seasonTitle"
-        app:layout_constraintVertical_bias="0.025">
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/season_details_navigation"

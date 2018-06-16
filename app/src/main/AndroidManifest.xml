@@ -16,14 +16,14 @@
             android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".components.SeasonDetailsActivity"
-            android:label="@string/title_activity_season_details">
-
-        </activity>
+            android:label="@string/title_activity_season_details"></activity>
+        <activity android:name=".components.RaceDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_season_details.*
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 
 class SeasonDetailsActivity : AppCompatActivity(),
         F1DataManager.DataListener,
@@ -28,11 +29,11 @@ class SeasonDetailsActivity : AppCompatActivity(),
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.nav_races -> {
-                        txtView_seasonTitle.text = "Races"
+                        supportActionBar?.title = "Races"
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.nav_driver_standings -> {
-                        txtView_seasonTitle.text = "Driver Standings"
+                        supportActionBar?.title = "Driver Standings"
                         return@OnNavigationItemSelectedListener true
                     }
                 }
@@ -42,15 +43,12 @@ class SeasonDetailsActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_details)
-
-        season = intent.getSerializableExtra("season") as Season
-        txtView_seasonTitle.text = season.season
-
         // item click listener for bottom navigation
         season_details_navigation
                 .setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-
+        // get season extra to show its details
+        season = intent.getSerializableExtra("season") as Season
+        supportActionBar?.title = "${season.season} Season"
         // TODO decide on Retrofit Call or RxJava implementation
         // retrofit way
         F1DataManager.getSeason(this, season.season)
@@ -97,6 +95,6 @@ class SeasonDetailsActivity : AppCompatActivity(),
      */
     override fun onFragmentInteraction(race: Race) {
         // show race standings activity
-        toast("Clicked: ${race.raceName}")
+        startActivity<RaceDetailsActivity>("race" to race)
     }
 }
