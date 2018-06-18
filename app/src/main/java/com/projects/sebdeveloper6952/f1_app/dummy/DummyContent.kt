@@ -1,11 +1,12 @@
 package com.projects.sebdeveloper6952.f1_app.dummy
 
-import com.projects.sebdeveloper6952.f1_app.models.Season
+//import com.projects.sebdeveloper6952.f1_app.models.Season
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
 import java.util.ArrayList
 
 object DummyContent {
 
-    val SEASONS: MutableList<Season> = ArrayList()
+    val SEASONS: MutableList<SeasonScheduleResponse.SeasonSchedule> = ArrayList()
 
     private var currentYear = 2018
 
@@ -16,11 +17,11 @@ object DummyContent {
         }
     }
 
-    private fun addSeason(season: Season) {
+    private fun addSeason(season: SeasonScheduleResponse.SeasonSchedule) {
         SEASONS.add(season)
     }
 
-    private fun createDummySeason(year: String): Season {
-        return Season(year, arrayListOf())
+    private fun createDummySeason(year: String): SeasonScheduleResponse.SeasonSchedule {
+        return SeasonScheduleResponse.SeasonSchedule(year, arrayListOf())
     }
 }

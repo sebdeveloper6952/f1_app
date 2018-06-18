@@ -9,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.projects.sebdeveloper6952.f1_app.R
 import com.projects.sebdeveloper6952.f1_app.adapters.RaceRecyclerViewAdapter
-import com.projects.sebdeveloper6952.f1_app.models.Race
-import com.projects.sebdeveloper6952.f1_app.models.Season
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
 import kotlinx.android.synthetic.main.fragment_race_list.view.*
 
 class RaceListFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
-    private lateinit var season: Season
+    private lateinit var season: SeasonScheduleResponse.SeasonSchedule
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,7 +29,7 @@ class RaceListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        season = arguments?.get("season") as Season
+        season = arguments?.get("season") as SeasonScheduleResponse.SeasonSchedule
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -56,11 +55,11 @@ class RaceListFragment : Fragment() {
      * activity.
      */
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(race: Race)
+        fun onFragmentInteraction(race: SeasonScheduleResponse.Race)
     }
 
     companion object {
-        fun newInstance(season: Season): RaceListFragment {
+        fun newInstance(season: SeasonScheduleResponse.SeasonSchedule): RaceListFragment {
             val fragment = RaceListFragment().apply {
                 val bundle = Bundle()
                 bundle.putSerializable("season", season)

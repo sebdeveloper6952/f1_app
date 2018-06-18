@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="item_season_card_height">100dp</dimen>
+    <dimen name="item_season_card_margin">5dp</dimen>
+    <dimen name="item_season_card_corner_radius">4dp</dimen>
+    <dimen name="item_season_card_elevation">2dp</dimen>
 </resources>

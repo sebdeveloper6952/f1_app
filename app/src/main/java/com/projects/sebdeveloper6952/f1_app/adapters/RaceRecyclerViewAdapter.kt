@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.projects.sebdeveloper6952.f1_app.R
-import com.projects.sebdeveloper6952.f1_app.models.Race
 import com.projects.sebdeveloper6952.f1_app.components.RaceListFragment
-import kotlinx.android.synthetic.main.item_race.view.*
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
+import kotlinx.android.synthetic.main.item_season_race_cardview.view.*
 
-class RaceRecyclerViewAdapter(private val data: List<Race>?,
+class RaceRecyclerViewAdapter(private val data: List<SeasonScheduleResponse.Race>?,
                               private val listener: RaceListFragment.OnFragmentInteractionListener?):
         RecyclerView.Adapter<RaceRecyclerViewAdapter.ViewHolder>() {
 
@@ -18,14 +18,14 @@ class RaceRecyclerViewAdapter(private val data: List<Race>?,
     init {
         // the clicked view has a Race object as its tag
         onClickListener = View.OnClickListener { v ->
-            val race = v.tag as Race
+            val race = v.tag as SeasonScheduleResponse.Race
             listener?.onFragmentInteraction(race)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layout = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_race, parent, false)
+                .inflate(R.layout.item_season_race_cardview, parent, false)
         return ViewHolder(layout)
     }
 
@@ -33,7 +33,8 @@ class RaceRecyclerViewAdapter(private val data: List<Race>?,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val race = data?.get(position)
-        holder.txtViewName.text = race?.raceName
+        holder.txtViewTitle.text = race?.raceName
+        // TODO(bind race standings to text views)
         with(holder.v) {
             tag = race
             setOnClickListener(onClickListener)
@@ -41,6 +42,9 @@ class RaceRecyclerViewAdapter(private val data: List<Race>?,
     }
 
     inner class ViewHolder(val v: View): RecyclerView.ViewHolder(v) {
-        var txtViewName = v.txtView_RaceName
+        val txtViewTitle = v.txtView_title
+        val txtViewFirst = v.txtView_firstPlace
+        val txtViewSecond = v.txtView_secondPlace
+        val txtViewThird = v.txtView_thirdPlace
     }
 }

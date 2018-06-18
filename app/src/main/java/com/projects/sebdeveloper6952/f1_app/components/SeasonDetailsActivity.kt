@@ -3,27 +3,24 @@ package com.projects.sebdeveloper6952.f1_app.components
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import com.projects.sebdeveloper6952.f1_app.F1ApiSingleton
 import com.projects.sebdeveloper6952.f1_app.F1DataManager
 import com.projects.sebdeveloper6952.f1_app.R
-import com.projects.sebdeveloper6952.f1_app.models.Race
-import com.projects.sebdeveloper6952.f1_app.models.Season
-import com.projects.sebdeveloper6952.f1_app.models.SeasonResponse
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
+import com.projects.sebdeveloper6952.f1_app.models.SeasonStandingsResponse
 import kotlinx.android.synthetic.main.activity_season_details.*
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.startActivity
 
 class SeasonDetailsActivity : AppCompatActivity(),
-        F1DataManager.DataListener,
+        F1DataManager.SeasonScheduleListener,
+        F1DataManager.SeasonStandingsListener,
         RaceListFragment.OnFragmentInteractionListener {
 
     // season associated with this activity
-    private lateinit var season: Season
+    private lateinit var season: SeasonScheduleResponse.SeasonSchedule
 
-    private var disposable: Disposable? = null
+    // used for rxjava
+    //private var disposable: Disposable? = null
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -47,11 +44,12 @@ class SeasonDetailsActivity : AppCompatActivity(),
         season_details_navigation
                 .setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         // get season extra to show its details
-        season = intent.getSerializableExtra("season") as Season
-        supportActionBar?.title = "${season.season} Season"
+        season = intent.getSerializableExtra("season") as SeasonScheduleResponse.SeasonSchedule
+        supportActionBar?.title = "${season.season} SeasonSchedule"
         // TODO decide on Retrofit Call or RxJava implementation
         // retrofit way
-        F1DataManager.getSeason(this, season.season)
+        F1DataManager.getSeasonSchedule(this, season.season)
+        F1DataManager.getSeasonStandings(this, season.season)
 
         // rxjava way
 //        val service = F1ApiSingleton.newRxInstance()
@@ -61,7 +59,7 @@ class SeasonDetailsActivity : AppCompatActivity(),
 //                .subscribe(this::success, this::error)
     }
 
-//    private fun success(season: SeasonResponse) {
+//    private fun success(season: SeasonScheduleResponse) {
 //        supportFragmentManager.beginTransaction()
 //                .add(R.id.fragment_space,
 //                        RaceListFragment.newInstance(season.MRData.RaceTable),
@@ -73,14 +71,15 @@ class SeasonDetailsActivity : AppCompatActivity(),
 //        toast("Error fetching data.")
 //    }
 
-    /**
-     * Called when season data is ready.
-     */
-    override fun onSeasonUpdated(season: Season) {
+    override fun onSeasonScheduleUpdated(season: SeasonScheduleResponse.SeasonSchedule) {
         // attach race list fragment
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_space, RaceListFragment.newInstance(season), "raceList")
                 .commit()
+    }
+
+    override fun onSeasonStandingsUpdated(standings: List<SeasonStandingsResponse.DriverResult>) {
+        toast("Got season standings.")
     }
 
     /**
@@ -93,7 +92,7 @@ class SeasonDetailsActivity : AppCompatActivity(),
     /**
      * Responds to recycler view item click.
      */
-    override fun onFragmentInteraction(race: Race) {
+    override fun onFragmentInteraction(race: SeasonScheduleResponse.Race) {
         // show race standings activity
         startActivity<RaceDetailsActivity>("race" to race)
     }

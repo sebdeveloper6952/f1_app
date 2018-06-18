@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_season_card_height"
+    android:layout_margin="@dimen/item_season_card_margin"
+    card_view:cardCornerRadius="@dimen/item_season_card_corner_radius"
+    card_view:cardElevation="@dimen/item_season_card_elevation">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtView_title"
+            android:layout_width="193dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="1950"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="0.508" />
+
+        <ImageView
+            android:id="@+id/imgView_firstPlace"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            card_view:layout_constraintStart_toEndOf="@+id/txtView_title"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/medal_gold" />
+
+        <ImageView
+            android:id="@+id/imgView_secondPlace"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            card_view:layout_constraintStart_toEndOf="@+id/txtView_title"
+            card_view:layout_constraintTop_toBottomOf="@+id/imgView_firstPlace"
+            card_view:srcCompat="@drawable/medal_silver" />
+
+        <ImageView
+            android:id="@+id/imgView_thirdPlace"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            card_view:layout_constraintStart_toEndOf="@+id/txtView_title"
+            card_view:layout_constraintTop_toBottomOf="@+id/imgView_secondPlace"
+            card_view:srcCompat="@drawable/medal_bronze" />
+
+        <TextView
+            android:id="@+id/txtView_firstPlace"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.086"
+            card_view:layout_constraintStart_toEndOf="@+id/imgView_firstPlace"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView_secondPlace"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            card_view:layout_constraintStart_toEndOf="@+id/imgView_secondPlace"
+            card_view:layout_constraintTop_toBottomOf="@+id/txtView_firstPlace" />
+
+        <TextView
+            android:id="@+id/txtView_thirdPlace"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            card_view:layout_constraintStart_toEndOf="@+id/imgView_thirdPlace"
+            card_view:layout_constraintTop_toBottomOf="@+id/txtView_secondPlace" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
