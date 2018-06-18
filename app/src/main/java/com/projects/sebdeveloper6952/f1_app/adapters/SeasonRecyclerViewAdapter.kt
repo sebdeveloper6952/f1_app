@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.projects.sebdeveloper6952.f1_app.components.AllSeasonFragment.OnListFragmentInteractionListener
 import com.projects.sebdeveloper6952.f1_app.R
-import com.projects.sebdeveloper6952.f1_app.models.Season
-//import kotlinx.android.synthetic.main.item_season.view.*
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
 import kotlinx.android.synthetic.main.item_season_race_cardview.view.*
 
-class SeasonRecyclerViewAdapter(private val data: List<Season>,
+class SeasonRecyclerViewAdapter(private val data: List<SeasonScheduleResponse.SeasonSchedule>,
                                 private val listener: OnListFragmentInteractionListener?):
         RecyclerView.Adapter<SeasonRecyclerViewAdapter.ViewHolder>() {
 
@@ -20,7 +19,7 @@ class SeasonRecyclerViewAdapter(private val data: List<Season>,
     init {
         // let know the listener when an item is clicked
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as Season
+            val item = v.tag as SeasonScheduleResponse.SeasonSchedule
             listener?.onListFragmentInteraction(item)
         }
     }

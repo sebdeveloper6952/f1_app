@@ -3,7 +3,7 @@ package com.projects.sebdeveloper6952.f1_app.components
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.projects.sebdeveloper6952.f1_app.R
-import com.projects.sebdeveloper6952.f1_app.models.Season
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.startActivity
 
@@ -21,7 +21,7 @@ class HomeActivity : AppCompatActivity(), AllSeasonFragment.OnListFragmentIntera
                 .commit()
     }
 
-    override fun onListFragmentInteraction(season: Season?) {
+    override fun onListFragmentInteraction(season: SeasonScheduleResponse.SeasonSchedule?) {
         startActivity<SeasonDetailsActivity>("season" to season)
     }
 }

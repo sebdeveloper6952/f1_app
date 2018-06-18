@@ -11,13 +11,12 @@ import android.view.ViewGroup
 import com.projects.sebdeveloper6952.f1_app.R
 import com.projects.sebdeveloper6952.f1_app.adapters.SeasonRecyclerViewAdapter
 import com.projects.sebdeveloper6952.f1_app.dummy.DummyContent
-import com.projects.sebdeveloper6952.f1_app.models.Season
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
 import kotlinx.android.synthetic.main.fragment_all_seasons_list.view.*
 
 class AllSeasonFragment : Fragment() {
 
     private var listener: OnListFragmentInteractionListener? = null
-    private val columnCount = 1
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -37,8 +36,7 @@ class AllSeasonFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val layout = inflater.inflate(R.layout.fragment_all_seasons_list, container, false)
         with(layout.recyclerView) {
-            //layoutManager = LinearLayoutManager(activity)
-            layoutManager = GridLayoutManager(activity, columnCount)
+            layoutManager = LinearLayoutManager(activity)
             adapter = SeasonRecyclerViewAdapter(DummyContent.SEASONS, listener)
         }
         return layout
@@ -50,7 +48,7 @@ class AllSeasonFragment : Fragment() {
     }
 
     interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(season: Season?)
+        fun onListFragmentInteraction(season: SeasonScheduleResponse.SeasonSchedule?)
     }
 
     companion object {

@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.projects.sebdeveloper6952.f1_app.R
-import com.projects.sebdeveloper6952.f1_app.models.Race
 import com.projects.sebdeveloper6952.f1_app.components.RaceListFragment
+import com.projects.sebdeveloper6952.f1_app.models.SeasonScheduleResponse
 import kotlinx.android.synthetic.main.item_season_race_cardview.view.*
 
-class RaceRecyclerViewAdapter(private val data: List<Race>?,
+class RaceRecyclerViewAdapter(private val data: List<SeasonScheduleResponse.Race>?,
                               private val listener: RaceListFragment.OnFragmentInteractionListener?):
         RecyclerView.Adapter<RaceRecyclerViewAdapter.ViewHolder>() {
 
@@ -18,7 +18,7 @@ class RaceRecyclerViewAdapter(private val data: List<Race>?,
     init {
         // the clicked view has a Race object as its tag
         onClickListener = View.OnClickListener { v ->
-            val race = v.tag as Race
+            val race = v.tag as SeasonScheduleResponse.Race
             listener?.onFragmentInteraction(race)
         }
     }
