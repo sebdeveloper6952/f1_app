@@ -16,26 +16,44 @@ class SeasonDetailsActivity : AppCompatActivity(),
         F1DataManager.SeasonStandingsListener,
         RaceListFragment.OnFragmentInteractionListener {
 
-    // season associated with this activity
-    private lateinit var season: SeasonScheduleResponse.SeasonSchedule
+    // extras
+    val EXTRA_RACE = "race"
 
-    // used for rxjava
-    //private var disposable: Disposable? = null
+    // schedule associated with this activity
+    private lateinit var schedule: SeasonScheduleResponse.SeasonSchedule
+    private lateinit var standings: List<SeasonStandingsResponse.DriverResult>
 
+    private var racesFragment: RaceListFragment? = null
+    private var standingsFragment: DriverStandingsFragment? = null
+
+    // bottom navigation item selected listener
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.nav_races -> {
-                        supportActionBar?.title = "Races"
-                        return@OnNavigationItemSelectedListener true
+                        if(racesFragment != null) {
+                            supportFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_space, racesFragment)
+                                    .commit()
+                            supportActionBar?.title = "Races"
+                            return@OnNavigationItemSelectedListener true
+                        }
                     }
                     R.id.nav_driver_standings -> {
-                        supportActionBar?.title = "Driver Standings"
-                        return@OnNavigationItemSelectedListener true
+                        if(standingsFragment != null) {
+                            supportFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_space, standingsFragment)
+                                    .commit()
+                            supportActionBar?.title = "Driver Standings"
+                            return@OnNavigationItemSelectedListener true
+                        }
                     }
                 }
                 false
             }
+
+    // used for rxjava
+    //private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,26 +61,30 @@ class SeasonDetailsActivity : AppCompatActivity(),
         // item click listener for bottom navigation
         season_details_navigation
                 .setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        // get season extra to show its details
-        season = intent.getSerializableExtra("season") as SeasonScheduleResponse.SeasonSchedule
-        supportActionBar?.title = "${season.season} SeasonSchedule"
+        // get schedule extra to show its details
+        schedule = intent
+                .getSerializableExtra(HomeActivity.EXTRA_SEASON)
+                as SeasonScheduleResponse.SeasonSchedule
+
+        // set support action bar title to match selected season year
+        supportActionBar?.title = "${schedule.season} Season"
         // TODO decide on Retrofit Call or RxJava implementation
         // retrofit way
-        F1DataManager.getSeasonSchedule(this, season.season)
-        F1DataManager.getSeasonStandings(this, season.season)
+        F1DataManager.getSeasonSchedule(this, schedule.season)
+        F1DataManager.getSeasonStandings(this, schedule.season)
 
         // rxjava way
 //        val service = F1ApiSingleton.newRxInstance()
-//        disposable = service.getSeason2(season.season)
+//        disposable = service.getSeason2(schedule.schedule)
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribeOn(Schedulers.io())
 //                .subscribe(this::success, this::error)
     }
 
-//    private fun success(season: SeasonScheduleResponse) {
+//    private fun success(schedule: SeasonScheduleResponse) {
 //        supportFragmentManager.beginTransaction()
 //                .add(R.id.fragment_space,
-//                        RaceListFragment.newInstance(season.MRData.RaceTable),
+//                        RaceListFragment.newInstance(schedule.MRData.RaceTable),
 //                        "raceList")
 //                .commit()
 //    }
@@ -73,13 +95,19 @@ class SeasonDetailsActivity : AppCompatActivity(),
 
     override fun onSeasonScheduleUpdated(season: SeasonScheduleResponse.SeasonSchedule) {
         // attach race list fragment
+        if(racesFragment == null) racesFragment = RaceListFragment.newInstance(season)
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_space, RaceListFragment.newInstance(season), "raceList")
+                .replace(R.id.fragment_space, racesFragment)
                 .commit()
+//        supportFragmentManager.beginTransaction()
+//                .add(R.id.fragment_space, RaceListFragment.newInstance(season), "raceList")
+//                .commit()
     }
 
     override fun onSeasonStandingsUpdated(standings: List<SeasonStandingsResponse.DriverResult>) {
-        toast("Got season standings.")
+        this.standings = standings
+        if(standingsFragment == null) standingsFragment =
+                DriverStandingsFragment.newInstance(standings)
     }
 
     /**
@@ -94,6 +122,6 @@ class SeasonDetailsActivity : AppCompatActivity(),
      */
     override fun onFragmentInteraction(race: SeasonScheduleResponse.Race) {
         // show race standings activity
-        startActivity<RaceDetailsActivity>("race" to race)
+        startActivity<RaceDetailsActivity>(EXTRA_RACE to race)
     }
 }

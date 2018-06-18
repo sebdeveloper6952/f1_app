@@ -22,6 +22,10 @@ class HomeActivity : AppCompatActivity(), AllSeasonFragment.OnListFragmentIntera
     }
 
     override fun onListFragmentInteraction(season: SeasonScheduleResponse.SeasonSchedule?) {
-        startActivity<SeasonDetailsActivity>("season" to season)
+        startActivity<SeasonDetailsActivity>(EXTRA_SEASON to season)
+    }
+
+    companion object {
+        val EXTRA_SEASON = "season"
     }
 }
